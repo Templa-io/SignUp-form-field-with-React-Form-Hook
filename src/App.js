@@ -10,15 +10,33 @@ function App() {
         </div>
         <div>
           <span> by </span>
-          <span>humphrey</span>
+          <span>
+            <a href="">humphrey</a>
+          </span>
         </div>
       </div>
       <hr />
       <div className="container">
-        <div className="title">
-          Form Field
-          <div className="right">right</div>
-          <div className="left">left</div>
+        <div className="bg">
+          <div className="title">
+            <div className="right">
+              <div>
+                <span>logo</span>
+              </div>
+              <div>
+                <span>Welcome Back!</span>
+              </div>
+              <div>
+                <span>To keep connected with us please</span>
+              </div>
+              <div>
+                <span>login with your personal info</span>
+              </div>
+
+              <div className="btn">SIGN IN</div>
+            </div>
+            <div className="left">left</div>
+          </div>
         </div>
       </div>
     </div>

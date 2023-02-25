@@ -1,12 +1,10 @@
-/* body {
-  
- 
-} */
+:root {
+  --planCard: linear-gradient(210.41deg, #fa5042 1.14%, #ffa739 100.75%);
+}
 
 .App {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 2rem;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,18 +13,25 @@
   border: 1px solid rgb(200, 200, 200, 0.3);
   width: 80%;
 }
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .title {
+  display: flex;
   text-align: center;
   background-size: cover;
   width: 60rem;
   height: 40rem;
   background-color: rgb(255, 255, 255, 0.3);
-  padding: 2vw 1vw;
+
   border-radius: 10px 10px 10px 10px;
   font-size: 2rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.container {
+.bg {
+  right: 20rem;
   margin-top: 1rem;
   display: flex;
   align-items: center;
@@ -38,7 +43,8 @@
   background-color: black;
 }
 .logo {
-  text-align: left;
+  display: flex;
+  flex-direction: column;
   font-size: 2rem;
 }
 .stroke-text {
@@ -46,6 +52,75 @@
   font-family: Arial, Helvetica, monospace, sans-serif;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
+}
+.right {
+  flex: 1;
+  position: relative;
+  background-color: rgb(100, 200, 200, 0.8);
+  border-radius: 10px 0px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 1rem;
+}
+.right > div:nth-of-type(1) {
+  display: flex;
+  align-content: center;
+  font-size: 1rem;
+}
+.right > div:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.right > div:nth-of-type(3) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 2rem;
+  font-size: 1rem;
+  font-weight: lighter;
+}
+.right > div:nth-of-type(4) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: lighter;
+  padding: 10px;
+}
+.left {
+  background-color: rgb(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  flex: 2 1;
+  position: relative;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.btn {
+  background-color: transparent;
+  padding: 1rem;
+  margin: 3rem;
+  border-radius: 30px;
+  border: 2px solid white;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  transition: 300ms all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: orange;
+  border: none;
 }
 /* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
