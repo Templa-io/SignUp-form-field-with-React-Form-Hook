@@ -1,3 +1,4 @@
+import { Facebook, Google, Linkedin } from "./AllSvgs";
 import "./App.css";
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <div className="title">
             <div className="right">
               <div>
-                <span>logo</span>
+                <span>log in</span>
               </div>
               <div>
                 <span>Welcome Back!</span>
@@ -35,7 +36,26 @@ function App() {
 
               <div className="btn">SIGN IN</div>
             </div>
-            <div className="left">left</div>
+            <div className="left">
+              <div>
+                <span>Create Account</span>
+              </div>
+              <div>
+                <Facebook width={20} />
+                <Google width={10} />
+                <Linkedin width={20} />{" "}
+              </div>
+              <div>
+                <span>or use email for registration</span>
+              </div>
+              <form className="signin">
+                <input type="text" />
+                <input type="text" />
+                <input type="text" />
+                <input type="number" />
+                <input type={"submit"} className="button" />
+              </form>
+            </div>
           </div>
         </div>
       </div>
