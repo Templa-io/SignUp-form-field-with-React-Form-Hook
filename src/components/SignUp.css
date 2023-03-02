@@ -1,0 +1,118 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  display: flex;
+  text-align: center;
+  background-size: cover;
+  width: 60rem;
+  height: 40rem;
+  background-color: rgb(255, 255, 255, 0.3);
+  border-radius: 10px 10px 10px 10px;
+  font-size: 2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.bg {
+  right: 20rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/src/components/Assets/cover.jpg");
+  width: 70rem;
+  border-radius: 10px 10px 10px 10px;
+  height: 60rem;
+  background-color: black;
+}
+.right {
+  flex: 1;
+  position: relative;
+  background-color: rgb(100, 200, 200, 0.8);
+  border-radius: 10px 0px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 1rem;
+}
+.right > div:nth-of-type(1) {
+  display: flex;
+  align-content: center;
+  font-size: 1rem;
+}
+.right > div:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.right > div:nth-of-type(3) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  font-size: 14px;
+  font-weight: lighter;
+}
+.right > div:nth-of-type(4) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: lighter;
+  padding: 10px;
+}
+.left {
+  background-color: rgb(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  flex: 2 1;
+  padding-top: 2rem;
+  position: relative;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.left > div:nth-of-type(1) {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(100, 200, 200);
+}
+.left > div:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 0.5rem;
+  gap: 10px;
+}
+.left > div:nth-of-type(3) {
+  padding-top: 10px;
+  font-size: 1rem;
+  color: gray;
+}
+.signin {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 10px 10px;
+  padding: 2vw 1vw;
+  margin: auto;
+  gap: 20px;
+  width: 20rem;
+}
+input {
+  border: 1px solid rgb(172, 171, 171);
+  border-radius: 10px;
+  padding: 0.5vw;
+  outline: none;
+  margin: 5px;
+}
+select {
+  border: 1px solid rgb(172, 171, 171);
+  border-radius: 10px;
+  padding: 0.5vw;
+  outline: none;
+  margin: 5px;
+}
