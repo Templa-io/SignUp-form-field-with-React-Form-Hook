@@ -7,25 +7,24 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "./input";
 
-const schema = yup.object({
-  username: yup.string().required("Username is a required field"),
-  email: yup.string().required("email is required").email("Email is not valid"),
-  gender: yup.string().required(),
-  password: yup.string().min(6, "Password must be at least 6 characters"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "password must be matched"),
-});
+// const schema = yup.object({
+//   username: yup.string().required("Username is a required field"),
+//   email: yup.string().required("email is required").email("Email is not valid"),
+//   gender: yup.string().required(),
+//   password: yup.string().min(6, "Password must be at least 6 characters"),
+//   confirmPassword: yup
+//     .string()
+//     .oneOf([yup.ref("password")], "password must be matched"),
+// });
 
 const SignUp = () => {
   const [password, setPassword] = useState();
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  } = useForm({});
 
   console.log(errors);
 
@@ -95,7 +94,17 @@ const SignUp = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 id="password"
-                {...register("password", { required: "Password is required" })}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters long",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "Password must be at most 20 characters long",
+                  },
+                })}
                 placeholder="Password"
               />
               {errors.password && (
@@ -104,10 +113,13 @@ const SignUp = () => {
               <input
                 type="password"
                 id="confirmPassword"
-                {...register("ConfirmPassword", {
+                {...register("confirmPassword", {
                   required: "Password do not match",
-                  validate: (value) =>
-                    value === password || "Password do not match",
+                  validate: (value) => {
+                    return (
+                      value === watch("password" || "Password do not match")
+                    );
+                  },
                 })}
                 placeholder="Confirm Password"
               />
