@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./components/LoginPage";
 import SignUp from "./components/SignUp";
@@ -18,8 +19,10 @@ function App() {
         </div>
       </div>
       <hr />
-      {/* <SignUp /> */}
-      <LoginPage />
+      <Routes>
+        <Route path="signup" element={<SignUp />} />
+        <Route path="login" element={<LoginPage />} />
+      </Routes>
     </div>
   );
 }

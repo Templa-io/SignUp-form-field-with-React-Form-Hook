@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { Facebook, Google, Linkedin } from "../AllSvgs";
 import "./LoginPage.css";
 
@@ -60,7 +61,9 @@ const LoginPage = () => {
               <span>Enter your personal details </span>
               <span>and start journey with us</span>
             </div>
-            <div className="btn">sign up</div>
+            <Link to="/signup">
+              <div className="btn">sign up</div>
+            </Link>
           </div>
         </div>
       </div>

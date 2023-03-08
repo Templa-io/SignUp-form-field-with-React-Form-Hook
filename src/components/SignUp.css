@@ -116,3 +116,7 @@ select {
   outline: none;
   margin: 5px;
 }
+a {
+  color: white;
+  text-decoration: none;
+}
