@@ -49,7 +49,7 @@ const LoginPage = () => {
                   placeholder="Password"
                 />
                 <button>forgot your password?</button>
-                <input type={"submit"} className="button1" />
+                <input type={"submit"} value="LOGIN" className="button1" />
               </form>
             </div>
           </div>

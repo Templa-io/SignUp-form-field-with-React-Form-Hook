@@ -78,7 +78,7 @@ const SignUp = () => {
                 {...register("password")}
                 placeholder="password"
               />
-              <input type={"submit"} className="button1" />
+              <input type={"submit"} value="SIGN IN" className="button1" />
             </form>
           </div>
         </div>
