@@ -61,7 +61,7 @@ const LoginPage = () => {
               <span>Enter your personal details </span>
               <span>and start journey with us</span>
             </div>
-            <Link to="/signup">
+            <Link to="/">
               <div className="btn">sign up</div>
             </Link>
           </div>

@@ -3,13 +3,23 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Facebook, Google, Linkedin } from "../AllSvgs";
 import "./SignUp.css";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object({
+  username: yup.string().required(),
+});
 
 const SignUp = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  console.log(errors);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -33,7 +43,7 @@ const SignUp = () => {
             </div>
 
             <Link to="/login">
-              <div className="btn">SIGN IN</div>
+              <div className="btn">LOGIN</div>
             </Link>
           </div>
           <div className="left">
@@ -51,9 +61,9 @@ const SignUp = () => {
             <form className="signin" onSubmit={handleSubmit(onSubmit)}>
               <input
                 type="text"
-                name="name"
-                {...register("name")}
-                placeholder="names"
+                id="username"
+                {...register("username")}
+                placeholder="Username"
               />
               <select name="gender" {...register("gender")}>
                 <option value="">Gender...</option>
@@ -62,21 +72,21 @@ const SignUp = () => {
               </select>
               <input
                 type="text"
-                name="email"
+                id="email"
                 {...register("email")}
                 placeholder="Email"
               />
               <input
-                type="number"
-                name="phone"
-                {...register("phone")}
-                placeholder="Phone No."
+                type="password"
+                id="password"
+                {...register("password")}
+                placeholder="Password"
               />
               <input
                 type="password"
-                name="password"
-                {...register("password")}
-                placeholder="password"
+                id="ConfirmPassword"
+                {...register("ConfirmPassword")}
+                placeholder="ConfirmPassword"
               />
               <input type={"submit"} value="SIGN IN" className="button1" />
             </form>
