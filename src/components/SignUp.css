@@ -120,3 +120,11 @@ a {
   color: white;
   text-decoration: none;
 }
+.errorMsg {
+  display: flex;
+  padding-left: 10px;
+  color: red;
+  font-size: 15px;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}

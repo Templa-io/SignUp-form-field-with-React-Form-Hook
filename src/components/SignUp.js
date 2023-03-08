@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Facebook, Google, Linkedin } from "../AllSvgs";
 import "./SignUp.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Input from "./input";
 
 const schema = yup.object({
-  username: yup.string().required(),
+  username: yup.string().required("Username is a required field"),
+  email: yup.string().required("email is required").email("Email is not valid"),
+  gender: yup.string().required(),
+  password: yup.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "password must be matched"),
 });
 
 const SignUp = () => {
+  const [password, setPassword] = useState();
   const {
     register,
     handleSubmit,
@@ -62,10 +70,13 @@ const SignUp = () => {
               <input
                 type="text"
                 id="username"
-                {...register("username")}
+                {...register("username", { required: "Username is required" })}
                 placeholder="Username"
               />
-              <select name="gender" {...register("gender")}>
+              {errors.username && (
+                <span className="errorMsg">{errors.username.message}</span>
+              )}
+              <select id="gender" name="gender" {...register("gender")}>
                 <option value="">Gender...</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -73,21 +84,38 @@ const SignUp = () => {
               <input
                 type="text"
                 id="email"
-                {...register("email")}
+                {...register("email", { required: "Email is required" })}
                 placeholder="Email"
               />
+              {errors.email && (
+                <span className="errorMsg">{errors.email.message}</span>
+              )}
               <input
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 id="password"
-                {...register("password")}
+                {...register("password", { required: "Password is required" })}
                 placeholder="Password"
               />
+              {errors.password && (
+                <span className="errorMsg">{errors.password.message}</span>
+              )}
               <input
                 type="password"
-                id="ConfirmPassword"
-                {...register("ConfirmPassword")}
-                placeholder="ConfirmPassword"
+                id="confirmPassword"
+                {...register("ConfirmPassword", {
+                  required: "Password do not match",
+                  validate: (value) =>
+                    value === password || "Password do not match",
+                })}
+                placeholder="Confirm Password"
               />
+              {errors.confirmPassword && (
+                <span className="errorMsg">
+                  {errors.confirmPassword.message}
+                </span>
+              )}
               <input type={"submit"} value="SIGN IN" className="button1" />
             </form>
           </div>
