@@ -1,6 +1,7 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Facebook, Google, Linkedin } from "../AllSvgs";
 import "./SignUp.css";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,6 +19,7 @@ import Input from "./input";
 // });
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [password, setPassword] = useState();
   const {
     register,
@@ -28,8 +30,13 @@ const SignUp = () => {
 
   console.log(errors);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      navigate("/login", { replace: true }); // <-- redirect
+    } catch (error) {
+      console.error("There was an error!", error);
+    }
   };
   return (
     <div className="container">

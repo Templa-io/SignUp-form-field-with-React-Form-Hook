@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Facebook, Google, Linkedin } from "../AllSvgs";
 import "./LoginPage.css";
 
 const LoginPage = () => {
+  const [password, setPassword] = useState();
+
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
+
+  console.log(errors);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -44,10 +49,23 @@ const LoginPage = () => {
                 />
                 <input
                   type="password"
-                  name="password"
-                  {...register("password")}
-                  placeholder="Password"
+                  id="confirmPassword"
+                  {...register("confirmPassword", {
+                    required: "Password do not match",
+                    validate: (value) => {
+                      return (
+                        value === watch("password" || "Password do not match")
+                      );
+                    },
+                  })}
+                  placeholder="Confirm Password"
                 />
+                {errors.confirmPassword && (
+                  <span className="errorMsg">
+                    {errors.confirmPassword.message}
+                  </span>
+                )}
+
                 <button>forgot your password?</button>
                 <input type={"submit"} value="LOGIN" className="button1" />
               </form>
