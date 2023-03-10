@@ -4,9 +4,6 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Facebook, Google, Linkedin } from "../AllSvgs";
 import "./SignUp.css";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import Input from "./input";
 
 // const schema = yup.object({
 //   username: yup.string().required("Username is a required field"),
@@ -124,7 +121,7 @@ const SignUp = () => {
                   required: "Password do not match",
                   validate: (value) => {
                     return (
-                      value === watch("password" || "Password do not match")
+                      value === watch("password") || "Password do not match"
                     );
                   },
                 })}
