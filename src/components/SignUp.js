@@ -124,7 +124,7 @@ const SignUp = () => {
                   required: "Password do not match",
                   validate: (value) => {
                     return (
-                      value === watch("password" || "Password do not match")
+                      value === watch("password" )|| "Password do not match"
                     );
                   },
                 })}
