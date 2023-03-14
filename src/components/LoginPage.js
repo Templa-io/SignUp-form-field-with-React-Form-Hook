@@ -1,54 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useRef} from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Facebook, Google, Linkedin } from "../AllSvgs";
 import "./LoginPage.css";
 
 const LoginPage = () => {
-  const [loginError, setLoginError] = useState(null); // New state variable for error message
-  const [signupData, setSignupData] = useState();
+const userRef = useRef()
+const errRef =useRef()
 
-  //Function to retrieve saved signup data from local storage
-  const getSignupData = () => {
-    const data = localStorage.getItem("signupData");
-    if (data) {
-      setSignupData(JSON.parse(data));
-    }
-  };
+  const [user, setUser] = useState(''); 
+  const [pwd, setPwd] = useState('');
+  const[errMsg,  setErrMsg] =useState()
+  const [success, setSuccess] = useState(false)
 
-  // Call getSignupData on component mount
   useEffect(() => {
-    getSignupData();
+    //calling the focus method on the userRef
+    //set focus on user input
+userRef.current && userRef.current.focus()
   }, []);
+
+  useEffect(() => {
+   //empty out user pasword when changed
+  setErrMsg('')
+  }, [user, pwd])
+
 
   const {
     register,
-    handleSubmit,
     watch,
+    handleSubmit,
     formState: { errors },
   } = useForm();
 
   console.log(errors);
+  
 
-  const onSubmit = (data) => {
-    // Check if email and password match the aved data
-    if (
-      signupData &&
-      data.email === signupData.email &&
-      data.password === signupData.password
-    ) {
-      // If match, log in user
+  const onSubmit = async (event) => {
+    console.log(event)
+    
 
-      console.log("Logged in successfully");
-      setLoginError(null);
-    } else {
-      // If not match, show error message
-      console.log("Email or password is incorrect");
-      setLoginError("Email or password is incorrect"); // Set error message
-    }
+    setSuccess(true)
+    
+    setUser('')
+    setPwd('')
+    setSuccess(true)
+    console.log(user, pwd)
   };
 
   return (
+  <>
+  
+  {success ? (
+    <div className="bg">
+<br/>
+<h2> you are logged in</h2>
+<br/>
+<button className="btn">
+  <a href="/">go to home</a>
+</button>
+    </div>
+  ):(
+
+
+   
     <div className="Login">
       <div className="bg">
         <div className="title">
@@ -68,34 +82,42 @@ const LoginPage = () => {
               <span>or use email for registration:</span>
             </div>
             <div className="login">
-              <form className="signin" onSubmit={handleSubmit(onSubmit)}>
+              <form className="signin" onSubmit={(event) => handleSubmit(onSubmit)(event)}>
                 <input
                   type="text"
-                  name="email"
-                  {...register("email")}
+                  id="email"
+                  ref={userRef}
+                  autoComplete="off"
+                  onChange={(e) => setUser(e.target.value)}
+                  value={user}
+                  required
                   placeholder="Email"
+                
                 />
                 <input
                   type="password"
                   id="password"
-                  {...register("password", {
-                    required: "Password do not match",
-                    minLength: {
-                      minLength: {
-                        value: 8,
-                        message: "Password must be at least 8 characters long",
-                      },
-                      maxLength: {
-                        value: 20,
-                        message: "Password must be at most 20 characters long",
-                      },
-                    },
-                    validate: (value) => {
-                      return (
-                        value === watch("password") || "Password do not match"
-                      );
-                    },
-                  })}
+                  onChange={(e) => setPwd(e.target.value)}
+                  value={pwd}
+                  required
+                  // {...register("password", {
+                  //   required: "Password do not match",
+                  //   minLength: {
+                  //     minLength: {
+                  //       value: 8,
+                  //       message: "Password must be at least 8 characters long",
+                  //     },
+                  //     maxLength: {
+                  //       value: 20,
+                  //       message: "Password must be at most 20 characters long",
+                  //     },
+                  //   },
+                  //   validate: (value) => {
+                  //     return (
+                  //       value === watch("password") || "Password do not match"
+                  //     );
+                  //   },
+                  // })}
                   placeholder="Password"
                 />
                 {errors.password && (
@@ -105,8 +127,8 @@ const LoginPage = () => {
                 <button>forgot your password?</button>
                 <input type={"submit"} value="LOGIN" className="button1" />
               </form>
-
-              {loginError && <span className="errorMsg1">{loginError}</span>}
+<p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+              {/* {loginError && <span className="errorMsg1">{loginError}</span>} */}
             </div>
           </div>
           <div className="right1">
@@ -124,6 +146,8 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+  )}
+</>
   );
 };
 

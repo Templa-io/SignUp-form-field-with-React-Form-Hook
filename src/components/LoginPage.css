@@ -4,6 +4,8 @@
   justify-content: center;
 }
 .bg {
+  display: flex;
+  flex-direction: column;
   right: 20rem;
   margin-top: 1rem;
   display: flex;
