@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .title {
   display: flex;
@@ -134,4 +135,56 @@ a {
   font-size: 15px;
 
   margin-top: -2rem;
+}
+@media screen and (max-width:768px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+  }
+  .title{
+   display: flex;
+   flex: none;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+  }
+
+.right{
+  flex: none;
+  margin-top: 5rem;
+  position: absolute;
+background: none;
+margin-bottom: 50rem;
+}
+
+.left > div:nth-of-type(1){
+  
+  font-size: large;
+}
+
+.right > div:nth-of-type(1){
+  flex:none;
+  display: none;
+  font-size: small;
+  
+}
+
+.right > div:nth-of-type(2){
+  flex:none;
+  font-size: medium;
+  margin-top: 1rem;
+
+}
+
+.left {
+flex: none;
+  border-radius: 10px 10px 10px 10px;
+  margin-top: 5rem;
+}
+
+
 }

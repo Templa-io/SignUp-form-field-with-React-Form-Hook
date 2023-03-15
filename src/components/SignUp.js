@@ -62,9 +62,19 @@ const SignUp = () => {
               <span>Create Account</span>
             </div>
             <div>
-              <Facebook width={20} />
+            <Link>
+            <Facebook width={20}/>
+            </Link> 
+              
+              <Link to>
               <Google width={10} />
-              <Linkedin width={20} />{" "}
+              </Link>
+
+              <Link>
+               <Linkedin width={20} />
+              </Link>
+              
+        
             </div>
             <div>
               <span>or use email for registration</span>
