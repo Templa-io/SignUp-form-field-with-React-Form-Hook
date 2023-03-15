@@ -161,6 +161,10 @@ background: none;
 margin-bottom: 50rem;
 }
 
+bg{
+  overflow: scroll;
+}
+
 .left > div:nth-of-type(1){
   
   font-size: large;
