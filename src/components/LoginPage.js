@@ -1,10 +1,15 @@
-import React, { useEffect, useState , useRef} from "react";
+import React, { useEffect, useState , useRef,useContext} from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Facebook, Google, Linkedin } from "../AllSvgs";
 import "./LoginPage.css";
+import AuthContext from "../context/AuthProvider"
+
+import axios from '../api/axios'
+const LOGIN = '/auth';
 
 const LoginPage = () => {
+  const {setAuth} = useContext(AuthContext)
 const userRef = useRef()
 const errRef =useRef()
 
@@ -37,20 +42,48 @@ userRef.current && userRef.current.focus()
 
   const onSubmit = async (event) => {
     console.log(event)
-    
 
-    setSuccess(true)
+    try{
+const response = await axios.post('/login' , JSON.stringify({user, pwd}),//appends the baseURL automaically in the 
+{
+
+  headers:{'Content-Type': 'application/json'},
+  withCredentials:true
+}
+)
+console.log(JSON.stringify(response?.data))
+console.log(JSON.stringify(response))
+const accessToken  = response?.data?.accessToken
+const roles = response?.data?.roles
+setAuth({user, pwd, roles, accessToken})
+setSuccess(true)
     
     setUser('')
     setPwd('')
     setSuccess(true)
     console.log(user, pwd)
+    }catch(err){
+if (!err?.response){
+  setErrMsg('No Server Response')
+}else if(err.response?.status === 400){
+  setErrMsg('Missing Username or Password')
+}else if(err.response?.status === 401){
+  setErrMsg('Unauthorized')
+}else {
+  setErrMsg('Login Failed')
+}
+errRef.current.focus()
+
+    }
+    
+
+    
   };
 
   return (
   <>
   
-  {success ? (
+  {/* {success ? (
     <div className="bg">
 <br/>
 <h2> you are logged in</h2>
@@ -59,7 +92,7 @@ userRef.current && userRef.current.focus()
   <a href="/">go to home</a>
 </button>
     </div>
-  ):(
+  ):( */}
 
 
    
@@ -74,6 +107,7 @@ userRef.current && userRef.current.focus()
               <span>Sign Into Your Account</span>
             </div>
             <div>
+              
               <Facebook width={20} />
               <Google width={10} />
               <Linkedin width={20} />{" "}
@@ -126,9 +160,10 @@ userRef.current && userRef.current.focus()
 
                 <button>forgot your password?</button>
                 <input type={"submit"} value="LOGIN" className="button1" />
+                {/* <input type={"submit"} value="LOGIN" className="button1" /> */}
               </form>
-<p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-              {/* {loginError && <span className="errorMsg1">{loginError}</span>} */}
+<p ref={errRef} className={errMsg ? "errorMsg1" : "offscreen"} aria-live="assertive">{errMsg}</p>
+             
             </div>
           </div>
           <div className="right1">
@@ -146,7 +181,7 @@ userRef.current && userRef.current.focus()
         </div>
       </div>
     </div>
-  )}
+  {/* )} */}
 </>
   );
 };
