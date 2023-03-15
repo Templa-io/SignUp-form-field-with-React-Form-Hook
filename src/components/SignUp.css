@@ -161,9 +161,6 @@ background: none;
 margin-bottom: 50rem;
 }
 
-bg{
-  overflow: scroll;
-}
 
 .left > div:nth-of-type(1){
   
@@ -180,7 +177,7 @@ bg{
 .right > div:nth-of-type(2){
   flex:none;
   font-size: medium;
-  margin-top: 1rem;
+  margin-top: 4rem;
 
 }
 
